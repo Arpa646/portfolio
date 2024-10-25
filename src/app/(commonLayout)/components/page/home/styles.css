@@ -1,0 +1,320 @@
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-slide {
+  width: 60%;
+}
+
+.swiper-slide:nth-child(2n) {
+  width: 40%;
+}
+
+.swiper-slide:nth-child(3n) {
+  width: 20%;
+}
+
+.custom {
+  background-image: url("./logo.png"),
+    url("./logo6.png");
+  background-position: -400px -200px, -100px -100px; /* Position logo at left (fixed x), logo6 at the top-right */
+  background-repeat: no-repeat;
+  background-attachment: auto; /* Keep the background images fixed on scroll */
+  background-size: auto, auto; /* Adjust if needed for scaling the images */
+  padding-top: 0;
+  min-height: 100vh;
+  position: relative; /* Allows for precise positioning */
+  top: 0; /* Stick it to the top of the page */
+  width: 100%; /* Full width to span the entire page */
+}
+
+.image-section {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture {
+  position: relative;
+  width: 150px; /* Adjust width as needed */
+  height: 150px; /* Adjust height as needed */
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.border-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+}
+
+.icon {
+  position: absolute;
+  width: 30px; /* Adjust icon size */
+  height: 30px; /* Adjust icon size */
+  background-color: #000; /* Replace with your icon or color */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Positioning icons around the profile picture */
+.icon-top {
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icon-left {
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%);
+}
+
+.icon-right {
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+}
+
+.icon-bottom {
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 640px) {
+  .custom {
+   
+    background-size: 130%;
+    background-position: bottom -93px; /* Changed from top -9px to bottom */
+  }
+}
+
+/* General Styles   background: radial-gradient(circle, rgba(34,34,34,1) 0%, rgba(0,0,0,1) 100%); */
+.portfolio-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 62vh;
+
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.text-section {
+  max-width: 50%;
+}
+
+.job-title {
+  font-size: 1.2rem;
+  color: #bbb;
+}
+
+.main-title {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+
+.main-title span {
+  color: #00ffcc;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ccc;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+/* Image Section */
+.image-section {
+  position: relative;
+  max-width: 700px;
+  max-height: 700px;
+}
+
+.profile-picture {
+  position: relative;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.border-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px dashed #00ffcc;
+  border-radius: 50%;
+  animation: rotate 6s linear infinite;
+}
+.btn-design {
+  border-left: 1px solid rgb(67, 65, 65);
+  border-right: 1px solid rgb(92, 88, 88);
+}
+/* Animation for border rotation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --transparent: oklch(0 0 0 / 0%);
+  --purple-100: oklch(0.86 0.08 280);
+  --purple-200: oklch(0.82 0.06 280);
+  --purple-300: oklch(0.71 0.12 280);
+  --purple-400: oklch(0.61 0.18 280);
+  --purple-500: oklch(0.5 0.21 280);
+  --purple-600: oklch(0.42 0.18 280);
+  --purple-800: oklch(0.25 0.15 280);
+  --purple-900: oklch(0.13 0.06 280);
+  --purple-900: oklch(0.13 0.06 280);
+}
+
+.center {
+  display: grid;
+  height: inherit;
+  place-items: center;
+}
+
+
+.button {
+  position: relative;
+  z-index: 1;
+  background-color: var(--purple-900);
+  background: var(--black-900);
+  border: 3px solid;
+  border-color: var(--purple-400);
+  border-radius: 500px;
+  color: var(--purple-300);
+  padding: 1rem 3rem;
+  text-decoration: none;
+  transition: 250ms ease-in-out;
+  transition-property: all;
+}
+
+.circle {
+  position: relative;
+  z-index: 1;
+  background: var(--purple-400);
+  border: 3px solid;
+  border-color: var(--purple-400);
+  border-radius: 0.75rem;
+  color: var(--purple-300);
+
+  text-decoration: none;
+  transition: 250ms ease-in-out;
+  transition-property: all;
+}
+.button:hover,
+.button:focus {
+  transform: scale(1.1);
+}
+
+.button:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.6;
+  border-radius: inherit;
+  box-shadow: 0 0 1em 0.5em var(--purple-400);
+  transition: 250ms ease-in-out;
+  transition-property: opacity;
+}
+.circle:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.6;
+  border-radius: inherit;
+  box-shadow: 0 0 1em 0.5em var(--purple-400);
+  transition: 250ms ease-in-out;
+  transition-property: opacity;
+}
+
+.button:hover::after,
+.button:focus::after {
+  opacity: 0.6;
+}
