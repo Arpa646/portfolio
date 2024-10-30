@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useSignUpMutation } from "@/GlobalRedux/api/api"; // Update the path accordingly
+import { useSignUpMutation } from "@/GlobalRedux/api/api"; // Update path if necessary
+import { useRouter } from "next/navigation";
 
 function RegisterForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     phone: "",
-    role: "user", // Default value
+    role: "user", // Default role
     address: "",
   });
 
@@ -18,8 +20,9 @@ function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addRegister(formData); // Triggering mutation with form data
+      await addRegister(formData); // Trigger mutation with form data
       console.log("Registration successful", formData);
+      router.push("/login"); // Redirect to login page
     } catch (error) {
       console.error("Error during registration:", error);
     }
@@ -33,17 +36,16 @@ function RegisterForm() {
   };
 
   return (
-    <div className="mt-14  flex flex-col custom  items-center justify-center px-4">
-      <div className="w-full max-w-lg px-8 rounded-lg">
-        <h1 className="text-4xl dark:text-white font-bold text-center mb-8 font-raleway">
+    <div className="flex custom flex-col items-center justify-center mt-14 px-4">
+      <div className="w-full max-w-lg px-8 py-10 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8 font-raleway">
           Register
         </h1>
-
-        <form onSubmit={handleSubmit} className="space-y-1">
-          <div className="space-y-1">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
             <label
               htmlFor="name"
-              className="block text-start text-lg font-semibold text-gray-700"
+              className="block text-lg font-semibold text-gray-700 dark:text-gray-300"
             >
               Name
             </label>
@@ -54,15 +56,15 @@ function RegisterForm() {
               placeholder="Full name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED] bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
 
-          <div className="space-y-1">
+          <div>
             <label
               htmlFor="email"
-              className="block text-start text-lg font-semibold text-gray-700"
+              className="block text-lg font-semibold text-gray-700 dark:text-gray-300"
             >
               Email
             </label>
@@ -73,15 +75,15 @@ function RegisterForm() {
               placeholder="example@email.com"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED] bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
 
-          <div className="space-y-1">
+          <div>
             <label
               htmlFor="password"
-              className="block text-start text-lg font-semibold text-gray-700"
+              className="block text-lg font-semibold text-gray-700 dark:text-gray-300"
             >
               Password
             </label>
@@ -92,15 +94,15 @@ function RegisterForm() {
               placeholder="Enter your password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED] bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
 
-          <div className="space-y-1">
+          <div>
             <label
               htmlFor="phone"
-              className="block text-start text-lg font-semibold text-gray-700"
+              className="block text-lg font-semibold text-gray-700 dark:text-gray-300"
             >
               Phone
             </label>
@@ -111,15 +113,15 @@ function RegisterForm() {
               placeholder="Phone number"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED] bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
 
-          <div className="space-y-1">
+          <div>
             <label
               htmlFor="address"
-              className="block text-start text-lg font-semibold text-gray-700"
+              className="block text-lg font-semibold text-gray-700 dark:text-gray-300"
             >
               Address
             </label>
@@ -130,14 +132,14 @@ function RegisterForm() {
               placeholder="Address"
               value={formData.address}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-[#D6DDED] bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 bg-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 bg-[#4E47FF] text-white text-lg rounded-lg hover:bg-indigo-700 transition-colors"
+            className="w-full py-3 bg-indigo-600 text-white text-lg font-semibold rounded-lg hover:bg-indigo-700 transition-colors"
           >
             Register
           </button>

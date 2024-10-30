@@ -258,7 +258,7 @@ body {
 }
 
 
-.button {
+.button-timeline {
   position: relative;
   z-index: 1;
   background-color: var(--purple-900);
@@ -286,12 +286,12 @@ body {
   transition: 250ms ease-in-out;
   transition-property: all;
 }
-.button:hover,
-.button:focus {
+.button-timeline:hover,
+.button-timeline:focus {
   transform: scale(1.1);
 }
 
-.button:after {
+.button-timeline:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -314,7 +314,7 @@ body {
   transition-property: opacity;
 }
 
-.button:hover::after,
-.button:focus::after {
+.button-timeline:hover::after,
+.button-timeline:focus::after {
   opacity: 0.6;
 }

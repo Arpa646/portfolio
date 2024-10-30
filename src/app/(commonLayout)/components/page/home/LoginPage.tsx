@@ -90,7 +90,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-white pt-6 p-10 min-lg:h-[900px] shadow-xl lg:w-[700px] sm:w-[500px] md:w-[700px] mx-auto">
+    <div className="border border-gray-500 pt-6 p-10 min-lg:h-[900px] shadow-xl lg:w-[700px] sm:w-[500px] md:w-[700px] mx-auto">
       <div className="divider"></div>
       <form
         onSubmit={handleSubmit}

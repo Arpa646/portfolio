@@ -10,7 +10,7 @@ import Footer from "./Footer";
 import ContactForm from "./ContactForm";
 import Timeline from "./Timeline";
 import Skill from "./Skill";
-
+import Price from "./Price";
 
 import Button from "./Button";
 
@@ -62,9 +62,9 @@ export default function Home2() {
 
           <Slider darkMode={darkMode} />
 
-          {/* <Price />
-          <Faq darkMode={darkMode} /> */}
-          <hr />
+           <Price />
+             {/* <Faq darkMode={darkMode} /> */}
+         
           {/* Footer Section */}
           <div className="w-full custom">
             <ContactForm />

@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    backgroundImage: {
+      'dark-gradient': 'linear-gradient(162deg, #1C1C1C 0%, #050505 100%)',
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

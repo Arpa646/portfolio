@@ -21,7 +21,7 @@ interface LoginForm {
 }
 
 const LoginPage: React.FC = () => {
-  const router = useRouter(); // Next.js router
+  const router = useRouter();
   const [LogIn] = useLogInMutation();
   const dispatch = useDispatch();
 
@@ -42,166 +42,93 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrorMessage(""); // Reset error message
+    setErrorMessage("");
 
     try {
-      const response = await LogIn(formData).unwrap(); // Ensure type safety with 'unwrap'
+      const response = await LogIn(formData).unwrap();
 
       if (response.token) {
-        const user = verifyToken(response.token); // Ensure this function is properly defined
-        dispatch(setUser({ user: user, token: response.token }));
-        setCookie(null, "token", response.token, {
-          maxAge: 30 * 24 * 60 * 60, // 30 days expiry
-          path: "/", // Cookie is accessible across the entire site
-        });
-
-        setCookie(null, "user", JSON.stringify(user), {
-          maxAge: 30 * 24 * 60 * 60, // 30 days expiry
-          path: "/", // Cookie is accessible across the entire site
-        });
-
+        const user = verifyToken(response.token);
+        dispatch(setUser({ user, token: response.token }));
+        setCookie(null, "token", response.token, { maxAge: 30 * 24 * 60 * 60, path: "/" });
+        setCookie(null, "user", JSON.stringify(user), { maxAge: 30 * 24 * 60 * 60, path: "/" });
         toast.success("Login successful!");
-        router.push("/"); // Use router.push instead of navigate()
-
-        console.log("Login successful:", response.token);
+        router.push("/");
       } else {
         setErrorMessage("Wrong email or password.");
       }
     } catch (error) {
-      console.error("Login error:", error);
-
       const apiError = error as ApiError;
-
-      if (apiError.status === 500 || apiError.status === 400) {
-        setErrorMessage("Wrong email or password.");
-      } else {
-        setErrorMessage("An unexpected error occurred. Please try again.");
-      }
+      setErrorMessage(apiError.status === 500 || apiError.status === 400 ? "Wrong email or password." : "An unexpected error occurred. Please try again.");
     }
   };
 
-  const handleLoginAsUser = () => {
-    setFormData({ email: "mdbadol290@gmail.com", password: "123456" });
-  };
-
-  const handleLoginAsAdmin = () => {
-    setFormData({ email: "adminrubab@gmail.com", password: "arpa" });
-  };
+  const handleLoginAsUser = () => setFormData({ email: "mdbadol290@gmail.com", password: "123456" });
+  const handleLoginAsAdmin = () => setFormData({ email: "adminrubab@gmail.com", password: "arpa" });
 
   return (
-    <div className="flex custom items-center justify-center h-screen">
-      {" "}
-      {/* Full-screen height and center horizontally/vertically */}
-      <div className=" p-10 shadow-xl lg:w-[700px] sm:w-[500px] md:w-[700px] w-full max-w-lg">
-        {" "}
-        {/* Add 'w-full' and 'max-w-lg' for responsiveness */}
-        <div className="divider"></div>
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-6 w-full flex flex-col items-center"
-        >
-          <h1 className="text-2xl font-medium" style={{ color: "#4F5C6E" }}>
-            Login to <span>FOODU</span>
-          </h1>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-black via-gray-900 to-purple-900 relative">
+      <div className="relative z-10 w-full max-w-md p-8 bg-opacity-30 bg-black backdrop-blur-md rounded-lg shadow-lg">
+        <h2 className="text-3xl font-semibold text-white text-center mb-4">Login to FOODU</h2>
+        <p className="text-gray-300 text-center mb-6">Glad you're back!</p>
 
-          <div className="flex flex-col items-center space-y-5 w-full">
-            {/* Email Input */}
-            <div className="w-full lg:w-[500px] flex flex-col items-center">
-              <div className="space-y-1 w-full">
-                <label
-                  htmlFor="email"
-                  className="block text-start text-sm font-semibold text-gray-700"
-                >
-                  PLEASE ENTER YOUR EMAIL
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Type here"
-                  className="w-full px-4 py-3   border border-gray-600 bg-transparent text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Password Input */}
-            <div className="w-full lg:w-[500px] flex flex-col items-center">
-              <div className="space-y-1 w-full">
-                <label
-                  htmlFor="password"
-                  className="block text-start text-sm font-semibold text-gray-700"
-                >
-                  PLEASE ENTER YOUR PASSWORD
-                  <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Type here"
-                  className="w-full px-4 py-3  bg-transparent border border-gray-600  text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  required
-                />
-                {errorMessage && (
-                  <div className="text-red-500 text-sm">{errorMessage}</div>
-                )}
-              </div>
-            </div>
-
-            <div className="w-full flex flex-col items-center space-y-4">
-              <div className="relative w-full flex justify-between">
-                <button
-                  type="button"
-                  onClick={handleLoginAsUser}
-                  className="bg-transparent border border-gray-600 text-white font-bold py-2 px-4 rounded"
-                >
-                  Login as User
-                </button>
-                <button
-                  type="button"
-                  onClick={handleLoginAsAdmin}
-                  className="bg-transparent border border-gray-600 text-white font-bold py-2 px-4 rounded"
-                >
-                  Login as Admin
-                </button>
-              </div>
-
-              <div className="relative w-full">
-                <button
-                  type="submit"
-                  className="input  bg-transparent border border-gray-600 h-12 font-semibold text-white w-full pl-10"
-                >
-                  Log In
-                </button>
-              </div>
-            </div>
-
-            <Link href="/forgetpass">
-              <h3 style={{ color: "#0088FF", borderRadius: "4px" }}>
-                Recover your password
-              </h3>
-            </Link>
-            <div>-OR-</div>
-            <div className="w-full flex flex-col items-center">
-              <div className="relative w-full text-center">
-                <Link
-                  className="text-xs font-bold underline underline-offset-4"
-                  href="/register" // Changed to Next.js 'Link' component
-                  style={{ color: "#3CB95D" }}
-                >
-                  CREATE ACCOUNT ON <span>FOODU</span>
-                </Link>
-              </div>
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className="w-full p-3 rounded-md bg-white bg-opacity-10 text-white placeholder-gray-300 focus:outline-none"
+              required
+            />
           </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              className="w-full p-3 rounded-md bg-white bg-opacity-10 text-white placeholder-gray-300 focus:outline-none"
+              required
+            />
+          </div>
+          {errorMessage && <div className="text-red-500 text-sm">{errorMessage}</div>}
+
+          <div className="flex items-center justify-between">
+            <button type="button" onClick={handleLoginAsUser} className="bg-transparent border border-gray-600 text-white font-bold py-2 px-4 rounded">
+              Login as User
+            </button>
+            <button type="button" onClick={handleLoginAsAdmin} className="bg-transparent border border-gray-600 text-white font-bold py-2 px-4 rounded">
+              Login as Admin
+            </button>
+          </div>
+
+          <button type="submit" className="w-full py-3 rounded-md bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold hover:opacity-90 transition-opacity">
+            Log In
+          </button>
         </form>
+
+        <div className="mt-4 text-center text-gray-400">
+          <Link href="/forgetpass" className="text-sm hover:underline">Forgot password?</Link>
+        </div>
+
+        <div className="flex items-center mt-6">
+          <span className="flex-grow border-t border-gray-700"></span>
+          <span className="px-4 text-gray-500">Or</span>
+          <span className="flex-grow border-t border-gray-700"></span>
+        </div>
+
+        <div className="mt-6 text-center text-gray-400 text-sm">
+          Don&apos;t have an account? <Link href="/register" className="text-purple-400 hover:underline">Create an account on FOODU</Link>
+        </div>
       </div>
+
+      {/* Background gradient decoration */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply opacity-30 filter blur-2xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply opacity-30 filter blur-2xl"></div>
     </div>
   );
 };

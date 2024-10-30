@@ -13,8 +13,11 @@ const Herosection2: React.FC = () => {
           <p className="job-title text1xl sm:text-xl font-semibold mb-2 sm:mb-4">
             Software Developer
           </p>
-          <h1 className="main-title text-white text-1xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-            Hello Im <span className="text-[#7271EB] ">Arpa Akter</span>
+          <h1  className="main-title text-white text-1xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+            Hello Im <span 
+            style={{color:"#7271EB"}}
+            
+            className=" ">Arpa Akter</span>
           </h1>
           <p className="description text-sm sm:text-base lg:text-lg mb-4 sm:mb-6">
             I excel at crafting elegant digital experiences and am proficient in

@@ -43,7 +43,7 @@ const Timeline = () => {
               <div className="absolute w-6 h-6 circle  rounded-full left-1/2 -ml-3"></div>
 
               <div
-                className={`button position: relative;
+                className={`button-timeline position: relative;
   z-index: 1; text-white px-6 py-4  shadow-md w-96 ${
     idx % 2 === 0 ? "mr-auto" : "ml-auto"
   }`}

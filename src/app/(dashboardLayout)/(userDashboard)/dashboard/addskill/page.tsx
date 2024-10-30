@@ -16,7 +16,7 @@ const SkillForm = () => {
     setIsLoading(true);
 
     const skillData = {
-      skill,
+      iconUrl:skill,
      // Include user ID
     };
 

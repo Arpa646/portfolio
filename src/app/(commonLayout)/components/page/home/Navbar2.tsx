@@ -54,7 +54,8 @@ const Navbar2: React.FC = () => {
           {/* Desktop Menu */}
           <div
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.9)",
+            
+              
               border: "1px solid #2B2B2B",
             }}
             className="hidden sm:block   sm:ml-6"
@@ -109,7 +110,7 @@ const Navbar2: React.FC = () => {
             {token ? (
               <button
                 style={{
-                  backgroundColor: "rgba(0, 0, 0, 0.9)",
+               
                   border: "1px solid #2B2B2B",
                 }}
                 onClick={handleLogOut}
@@ -120,14 +121,21 @@ const Navbar2: React.FC = () => {
             ) : (
               <Link
                 style={{
-                  backgroundColor: "rgba(0, 0, 0, 0.9)",
-                  border: "1px solid #2B2B2B",
+      
+             
                 }}
                 href="/login"
               >
-                <span className=" text-white px-5 h-9 rounded-lg text-sm">
-                  Sign In
-                </span>
+              <button
+                style={{
+                 
+                  border: "1px solid #2B2B2B",
+                }}
+                onClick={handleLogOut}
+                className=" text-white px-4 py-2 rounded-lg text-sm"
+              >
+                Log Out
+              </button>
               </Link>
             )}
           </div>
@@ -182,7 +190,7 @@ const Navbar2: React.FC = () => {
           ) : (
             <Link
               style={{
-                backgroundColor: "rgba(0, 0, 0, 0.9)",
+             height:"20px",
                 border: "1px solid #2B2B2B",
               }}
               href="/login"

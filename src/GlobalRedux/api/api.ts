@@ -13,7 +13,7 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     //baseUrl: "http://localhost:5000/api",
-    baseUrl: "https://portfolio-backend-beige-zeta.vercel.app/api",
+    baseUrl: "http://localhost:5000/api",
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
@@ -87,7 +87,7 @@ export const baseApi = createApi({
       query: (skillData) => {
         console.log("Submitting new recipe:", skillData);
         return {
-          url: "/recipies",
+          url: "/skill",
           method: "POST",
           body: skillData,
         };
