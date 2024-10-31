@@ -119,24 +119,7 @@ const Navbar2: React.FC = () => {
                 Log Out
               </button>
             ) : (
-              <Link
-                style={{
-      
-             
-                }}
-                href="/login"
-              >
-              <button
-                style={{
-                 
-                  border: "1px solid #2B2B2B",
-                }}
-                onClick={handleLogOut}
-                className=" text-white px-4 py-2 rounded-lg text-sm"
-              >
-                Log Out
-              </button>
-              </Link>
+             <> </>
             )}
           </div>
         </div>

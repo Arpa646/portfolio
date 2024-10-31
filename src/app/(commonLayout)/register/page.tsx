@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useSignUpMutation } from "@/GlobalRedux/api/api"; // Update path if necessary
 import { useRouter } from "next/navigation";
-
+import Link from "next/link"; // Next.js Link for navigation
 function RegisterForm() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -143,6 +143,9 @@ function RegisterForm() {
           >
             Register
           </button>
+          <div className="mt-6 text-center text-gray-400 text-sm">
+          have an account? <Link href="/login" className="text-purple-400 hover:underline">login</Link>
+        </div>
         </form>
       </div>
     </div>

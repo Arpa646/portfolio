@@ -8,9 +8,9 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className="h-auto  py-6">
-      <div className="w-[90%] lg:w-[1000px] mx-auto py-6">
-        <div className="bg-black dark:bg-dark-gradient rounded-3xl shadow-lg p-6 lg:p-10">
+    <footer className="h-auto mt-7  py-10">
+      <div className="w-[90%] lg:w-[1000px] mx-auto py-12">
+        <div className=" dark:bg-dark-gradient rounded-3xl shadow-lg p-6 lg:p-10">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start">
             {/* Left Section */}
             <div className="flex flex-col items-center w-full lg:w-[300px] lg:items-start space-y-4 lg:space-y-6">

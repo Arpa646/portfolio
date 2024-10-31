@@ -69,7 +69,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-black via-gray-900 to-purple-900 relative">
       <div className="relative z-10 w-full max-w-md p-8 bg-opacity-30 bg-black backdrop-blur-md rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold text-white text-center mb-4">Login to FOODU</h2>
+        <h2 className="text-3xl font-semibold text-white text-center mb-4">Login </h2>
         <p className="text-gray-300 text-center mb-6">Glad you're back!</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -122,7 +122,7 @@ const LoginPage: React.FC = () => {
         </div>
 
         <div className="mt-6 text-center text-gray-400 text-sm">
-          Don&apos;t have an account? <Link href="/register" className="text-purple-400 hover:underline">Create an account on FOODU</Link>
+          Don&apos;t have an account? <Link href="/register" className="text-purple-400 hover:underline">Create an account</Link>
         </div>
       </div>
 

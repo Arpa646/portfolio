@@ -20,11 +20,39 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   const router = useRouter();
   const { token } = useUser(); // Get the token from user context or service
 
-  const getBlogPreview = (content: string, maxLength: number): string => {
-    return content.length > maxLength
-      ? content.slice(0, maxLength) + "..."
-      : content;
+  const getBlogPreview = (html: string, maxLength: number): string => {
+    let currentLength = 0;
+    let result = "";
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+
+    const traverseNodes = (node: Node): void => {
+      if (currentLength >= maxLength) return;
+      if (node.nodeType === Node.TEXT_NODE) {
+        const textContent = node.textContent || "";
+        const remainingLength = maxLength - currentLength;
+
+        if (textContent.length > remainingLength) {
+          result += textContent.slice(0, remainingLength) + "...";
+          currentLength = maxLength;
+        } else {
+          result += textContent;
+          currentLength += textContent.length;
+        }
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        result += `<${(node as Element).nodeName.toLowerCase()}>`;
+        Array.from(node.childNodes).forEach(traverseNodes);
+        result += `</${(node as Element).nodeName.toLowerCase()}>`;
+      }
+    };
+
+    Array.from(tempDiv.childNodes).forEach(traverseNodes);
+    return result;
   };
+
+
+
+
 
   const blogPreview = getBlogPreview(blog.blogContent, 100);
 
@@ -48,14 +76,17 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         <img
           src={blog.image}
           alt={blog.title || "Blog image"}
-          className="w-full h-64 object-cover p-5 rounded-t-lg md:rounded-l-lg md:rounded-none"
+          className="w-3/4 h-64 object-cover p-5 rounded-t-lg md:rounded-l-lg md:rounded-none"
         />
       </div>
 
       {/* Blog Content */}
       <div className="p-4 w-full md:w-2/4 text-gray-800 dark:text-white">
         <h3 className="text-2xl font-semibold mb-2">{blog.title}</h3>
-        <p className="text-lg mb-4">{blogPreview}</p>
+        <div
+          className="text-white text-lg mb-4"
+          dangerouslySetInnerHTML={{ __html: blogPreview }}
+        ></div>
         <div className="mb-2">
           <span className="text-sm text-gray-500">By: {blog.author}</span>
         </div>

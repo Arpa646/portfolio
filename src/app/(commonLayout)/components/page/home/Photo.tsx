@@ -8,7 +8,11 @@ const Photo: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{
+          ease: "linear",
+          duration: 2,
+          x: { duration: 1 }
+        }}
       >
         <div className="w-40 h-40 sm:w-52 sm:h-52 lg:w-60 lg:h-60 xl:w-72 xl:h-72 relative">
           <Image

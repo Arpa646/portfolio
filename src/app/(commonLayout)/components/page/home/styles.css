@@ -51,8 +51,8 @@ body {
 }
 
 .custom {
-  background-image: url("./logo.png"),
-    url("./logo6.png");
+  background-image: url("./images/logo.png"),
+    url("./images/logo6.png");
   background-position: -400px -200px, -100px -100px; /* Position logo at left (fixed x), logo6 at the top-right */
   background-repeat: no-repeat;
   background-attachment: auto; /* Keep the background images fixed on scroll */
